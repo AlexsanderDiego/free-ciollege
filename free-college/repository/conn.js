@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 const sequelize = new Sequelize(
-  'universidade',
+  'universidades',
   'root',
   '12345',
   {

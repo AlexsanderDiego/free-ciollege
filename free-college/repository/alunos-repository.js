@@ -2,13 +2,15 @@
 // var { getMatriculasPorAlunoId } = require('./matriculas-repository');
 // var { getProfessorPorCurso } = require('./professor-repository');
 
-const {Alunos} = require('../models/model')
+const {Alunos} = require('../models/modelAlunos')
 
+//GET
 async function getAlunos() {
     // return execSql('SELECT id, nome, email FROM Alunos', []);
     return Alunos.findAll({attributes:['id', 'nome', 'email']});
 }
 
+//POST
 async function addAluno(aluno) {
     // return execSql('INSERT INTO Alunos (nome, email) VALUES (?, ?)', [aluno.nome, aluno.email]);
     try{
@@ -20,11 +22,13 @@ async function addAluno(aluno) {
     }
 }
 
+//DELETE
 async function deleteAluno(id) {
     // return execSql('DELETE FROM Alunos WHERE id = ?', [id]);
     return Alunos.destroy({where:{id}});
 }
 
+//PUT
 async function editAluno(aluno) {
     // return execSql('UPDATE Alunos SET nome = ?, email = ? WHERE id = ?', [aluno.nome, aluno.email, aluno.id]);
     const updateAluno = await Alunos.findByPk(aluno.id);
