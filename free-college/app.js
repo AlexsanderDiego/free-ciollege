@@ -4,6 +4,7 @@ const carrosRouter = require('./routes/carros')
 const pessoasRouter = require('./routes/pessoas')
 const alunosRouter = require('./routes/alunos')
 const salasRouter = require('./routes/salas')
+const departamentosRouter = require('./routes/departamentos')
 const port = 3000
 
 app.use(express.json());
@@ -23,6 +24,9 @@ app.use('/alunos', alunosRouter);
 
 // Prefixo da rota de salas /salas
 app.use('/salas', salasRouter);
+
+// Prefixo da rota de departamentos /departamentos
+app.use('/departamentos', departamentosRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
