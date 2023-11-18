@@ -1,4 +1,4 @@
-const { getSalas, addSala, getAluno, deleteSala, editSala, getAlunosCursos, getAlunoCursos } = require('../repository/salas-repository');
+const { getSalas, addSala, getSala, deleteSala, editSala, getAlunosCursos, getAlunoCursos } = require('../repository/salas-repository');
 const express = require('express')
 const router = express.Router()
 
@@ -22,17 +22,17 @@ router.get('/', async (req, res) => {
 //     }
 // });
 
-// router.get('/:id', async (req, res) => {
-//     const id = req.params.id;
-//     const aluno = await getAluno(id);
-//     console.log(aluno);
-//     if (aluno) {
-//         res.json(aluno);
-//     } else {
-//         res.status(404);
-//         res.json();
-//     }
-// });
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    const sala = await getSala(id);
+    if (sala) {
+        res.json(sala);
+        console.log(sala.dataValues);
+    } else {
+        res.status(404);
+        res.json();
+    }
+});
 
 router.post('/', async (req, res) => {
     const sala = req.body;

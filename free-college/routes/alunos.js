@@ -33,9 +33,9 @@ router.get('/:id/cursos', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
     const aluno = await getAluno(id);
-    console.log(aluno);
     if (aluno) {
         res.json(aluno);
+        console.log(aluno.dataValues);
     } else {
         res.status(404);
         res.json();

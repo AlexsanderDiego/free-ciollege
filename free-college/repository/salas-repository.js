@@ -59,17 +59,26 @@ async function editSala(sala) {
 //     return aluno;
 // }
 
-// async function getAluno(id) {
+async function getSala(id) {
 //     const result = await execSql('SELECT id, nome, email FROM Alunos WHERE id = ?', [id]);
 //     return result[0];
-// }
+    // Utilizando o método findByPk do modelo Aluno
+  const sala = await Salas.findByPk(id);
+
+  if (sala) {
+    console.log(`Número: ${sala.numero}, Capacidade: ${sala.capacidade}`);
+    return sala;
+  } else {
+    console.log("Sala não encontrado");
+  }
+}
 
 module.exports = {
     getSalas,
     addSala,
     deleteSala,
     editSala,
-    // getAluno,
+    getSala,
     // getAlunosCursos,
     // getAlunoCursos
 }
