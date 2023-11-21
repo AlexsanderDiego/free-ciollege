@@ -1,34 +1,10 @@
 const { DataTypes, sequelize } = require('./modelConection')
 
-// const { Sequelize, DataTypes } = require("sequelize");
-
-
-//   const sequelize = new Sequelize("universidades", "root", "12345", {
-//     host: "localhost",
-//     dialect: "mariadb",
-//   });
-
-//   sequelize
-//     .authenticate()
-//     .then(() => {
-//       console.log("Connection succesfull");
-//     })
-//     .catch((error) => {
-//       console.log("Unable to connect whit database", error);
-//     });
-
-
-//NÃO SENDO USADO - APAGAR FUTURAMENTE
-// async function execSql(sql, params) {
-//     return new Promise((resolve, reject) => {
-//         pool.query(sql, params, function (error, results, fields) {
-//             if (error) {
-//                 return reject(error);
-//             }
-//             return resolve(results);
-//         });
-//     });
-// }
+const { Cursos } = require("../models/modelCursos");
+const { Matriculas } = require("../models/modelMatriculas");
+const { Professores } = require("../models/modelProfessores");
+const { Salas } = require("../models/modelSala");
+const { Departamentos } = require("../models/modelDepartamento");
 
 const Alunos = sequelize.define(
   "Alunos",
@@ -62,6 +38,22 @@ sequelize
   .catch((error) => {
     console.log("Internal Error", error);
   });
+
+// Aluno tem várias matrículas
+Alunos.hasMany(Matriculas, { foreignKey: "aluno_id" });
+Matriculas.belongsTo(Alunos, { foreignKey: "aluno_id" });
+
+// Curso possui várias matrículas
+Cursos.hasMany(Matriculas, { foreignKey: "curso_id" });
+Matriculas.belongsTo(Cursos, { foreignKey: "curso_id" });
+
+// Curso pertence a um Professor
+Cursos.belongsTo(Professores, { foreignKey: "professor_id" });
+Professores.hasMany(Cursos, { foreignKey: "professor_id" });
+
+// Curso pertence a uma Sala
+Cursos.belongsTo(Salas, { foreignKey: "sala_id" });
+Salas.hasOne(Cursos, { foreignKey: "sala_id" });
 
 module.exports = {
   Alunos,
