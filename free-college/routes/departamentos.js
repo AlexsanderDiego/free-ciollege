@@ -52,8 +52,8 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     const departamento = req.body;
     sala.id = req.params.id;
-    await editDepartamento(departamento);
-    return departamento;
+    const editedDepartamento = await editDepartamento(departamento);
+    res.json(editedDepartamento);
 });
 
 module.exports = router;

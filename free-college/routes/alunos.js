@@ -81,10 +81,9 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     const aluno = req.body;
     aluno.id = req.params.id;
-    await editAluno(aluno);
-    // const editedAluno = await getAluno(aluno.id);
+    const editedAluno = await editAluno(aluno);
     // res.json(editedAluno);
-    return aluno;
+    res.json(editedAluno);
 });
 
 module.exports = router;
