@@ -88,8 +88,6 @@ async function getAlunoCursos(id) {
 }
 
 async function getAluno(id) {
-  // const result = await execSql('SELECT id, nome, email FROM Alunos WHERE id = ?', [id]);
-  // return result[0];
 
   // Utilizando o método findByPk do modelo Aluno
   const aluno = await Alunos.findByPk(id);
@@ -100,17 +98,6 @@ async function getAluno(id) {
   } else {
     console.log("Aluno não encontrado");
   }
-}
-
-async function execSql(sql, params) {
-  return new Promise((resolve, reject) => {
-    conn.connection.query(sql, params, function (error, results, fields) {
-      if (error) {
-        return reject(error);
-      }
-      return resolve(results);
-    });
-  });
 }
 
 module.exports = {
