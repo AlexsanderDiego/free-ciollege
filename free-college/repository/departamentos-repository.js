@@ -58,17 +58,25 @@ async function editDepartamento(departamento) {
 //     return aluno;
 // }
 
-// async function getAluno(id) {
-//     const result = await execSql('SELECT id, nome, email FROM Alunos WHERE id = ?', [id]);
-//     return result[0];
-// }
+async function getDepartamento(id) {
+
+    // Utilizando o método findByPk do modelo Aluno
+    const departamento = await Departamentos.findByPk(id);
+  
+    if (departamento) {
+      console.log(`Nome: ${departamento.nome}`);
+      return departamento;
+    } else {
+      console.log("Departamento não encontrado");
+    }
+  }
 
 module.exports = {
     getDepartamentos,
     addDepartamento,
     deleteDepartamento,
     editDepartamento,
-    // getAluno,
+    getDepartamento,
     // getAlunosCursos,
     // getAlunoCursos
 }

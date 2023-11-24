@@ -1,4 +1,4 @@
-const { addDepartamento, getDepartamentos, deleteDepartamento, editDepartamento } = require('../repository/departamentos-repository');
+const { addDepartamento, getDepartamento, deleteDepartamento, editDepartamento } = require('../repository/departamentos-repository');
 const express = require('express')
 const router = express.Router()
 
@@ -22,17 +22,17 @@ router.get('/', async (req, res) => {
 //     }
 // });
 
-// router.get('/:id', async (req, res) => {
-//     const id = req.params.id;
-//     const aluno = await getAluno(id);
-//     console.log(aluno);
-//     if (aluno) {
-//         res.json(aluno);
-//     } else {
-//         res.status(404);
-//         res.json();
-//     }
-// });
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    const departamento = await getDepartamento(id);
+    console.log(departamento);
+    if (departamento) {
+        res.json(departamento);
+    } else {
+        res.status(404);
+        res.json();
+    }
+});
 
 router.post('/', async (req, res) => {
     const departamento = req.body;
