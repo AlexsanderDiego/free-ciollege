@@ -1,4 +1,4 @@
-const { addDepartamento, getDepartamento, deleteDepartamento, editDepartamento } = require('../repository/departamentos-repository');
+const { addDepartamento, getDepartamento, deleteDepartamento, editDepartamento, getDepartamentos } = require('../repository/departamentos-repository');
 const express = require('express')
 const router = express.Router()
 

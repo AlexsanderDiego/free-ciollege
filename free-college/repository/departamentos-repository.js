@@ -23,7 +23,7 @@ async function deleteDepartamento(id) {
 
 //PUT
 async function editDepartamento(departamento) {
-    const updateDepartamento = await Salas.findByPk(departamento.id);
+    const updateDepartamento = await Departamentos.findByPk(departamento.id);
     if (updateDepartamento) {
         updateDepartamento.nome = departamento.nome;
         await updateDepartamento.save();
