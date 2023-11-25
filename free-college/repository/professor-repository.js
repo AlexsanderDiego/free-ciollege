@@ -23,7 +23,7 @@ async function deleteProfessor(id) {
 
 //PUT
 async function editProfessor(professor) {
-    const updateProfessor = await Salas.findByPk(professor.id);
+    const updateProfessor = await Professores.findByPk(professor.id);
     if (updateDepartamento) {
         updateProfessor.nome = professor.nome;
         await updateProfessor.save();
@@ -58,17 +58,25 @@ async function editProfessor(professor) {
 //     return aluno;
 // }
 
-// async function getAluno(id) {
-//     const result = await execSql('SELECT id, nome, email FROM Alunos WHERE id = ?', [id]);
-//     return result[0];
-// }
+async function getProfessor(id) {
+
+    // Utilizando o método findByPk do modelo Aluno
+    const professor = await Professores.findByPk(id);
+  
+    if (professor) {
+      console.log(`Nome: ${professor.nome}`);
+      return professor;
+    } else {
+      console.log("Professor não encontrado");
+    }
+  }
 
 module.exports = {
     getProfessores,
     addProfessor,
     deleteProfessor,
     editProfessor,
-    // getAluno,
+    getProfessor,
     // getAlunosCursos,
     // getAlunoCursos
 }
